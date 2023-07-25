@@ -49,18 +49,48 @@ contract CollaborativeBIM is ERC721, AccessControl {
 
     uint256 public modelCounter;
 
-    event ModelCreated(uint256 modelId, string name, string url, address author);
-    event ModelCompleted(uint256 modelId);
-    event ChangeProposed(uint256 modelId, uint256 changeId, string name, string url, address proposer);
-    event ChangeApproved(uint256 modelId, uint256 changeId);
-    event VoteCast(address voter, uint256 modelId, uint256 changeId);
+    event ModelCreated(
+        uint256 modelId,
+        string name,
+        string url,
+        address author
+    );
+
+    event ModelCompleted(
+        uint256 modelId
+    );
+
+    event ChangeProposed(
+        uint256 modelId,
+        uint256 changeId,
+        string name,
+        string url,
+        address proposer
+    );
+
+    event ChangeApproved(
+        uint256 modelId,
+        uint256 changeId
+    );
+
+    event VoteCast(
+        address voter,
+        uint256 modelId,
+        uint256 changeId
+    );
 
     constructor() ERC721("CollaborativeBIM", "BIM") {
         _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
     }
 
-    function createModel(string memory _name, string memory _url) public {
-        require(hasRole(MODEL_UPDATER_ROLE, msg.sender), "Caller is not a model updater");
+    function createModel(
+        string memory _name,
+        string memory _url
+    ) public {
+        require(
+            hasRole(MODEL_UPDATER_ROLE, msg.sender),
+            "Caller is not a model updater"\
+        );
 
         bimModels[modelCounter] = BIMModel({
             name: _name,
@@ -76,8 +106,13 @@ contract CollaborativeBIM is ERC721, AccessControl {
         modelCounter++;
     }
 
-    function completeModel(uint256 _modelId) public onlyRole(DEFAULT_ADMIN_ROLE) {
-        require(_exists(_modelId), "ERC721: operator query for nonexistent token");
+    function completeModel(
+        uint256 _modelId
+    ) public onlyRole(DEFAULT_ADMIN_ROLE) {
+        require(
+            _exists(_modelId),
+            "ERC721: operator query for nonexistent token"
+        );
 
         BIMModel storage model = bimModels[_modelId];
         model.isComplete = true;
@@ -85,16 +120,33 @@ contract CollaborativeBIM is ERC721, AccessControl {
         emit ModelCompleted(_modelId);
     }
 
-    function getModel(uint256 _modelId) public view returns (string memory name, string memory url, bool isComplete, address author) {
-        require(_exists(_modelId), "ERC721: operator query for nonexistent token");
+    function getModel(
+        uint256 _modelId
+    ) public view returns (
+        string memory name,
+        string memory url,
+        bool isComplete,
+        address author
+    ) {
+        require(
+            _exists(_modelId),
+            "ERC721: operator query for nonexistent token"
+        );
 
         BIMModel storage model = bimModels[_modelId];
 
         return (model.name, model.url, model.isComplete, model.author);
     }
 
-    function proposeChange(uint256 _modelId, string memory _name, string memory _url) public {
-        require(_exists(_modelId), "ERC721: operator query for nonexistent token");
+    function proposeChange(
+        uint256 _modelId,
+        string memory _name,
+        string memory _url
+    ) public {
+        require(
+            _exists(_modelId),
+            "ERC721: operator query for nonexistent token"
+        );
 
         ProposedChange memory change = ProposedChange({
             modelId: _modelId,
@@ -107,12 +159,25 @@ contract CollaborativeBIM is ERC721, AccessControl {
 
         proposedChanges[_modelId].push(change);
 
-        emit ChangeProposed(_modelId, proposedChanges[_modelId].length - 1, _name, _url, msg.sender);
+        emit ChangeProposed(
+            _modelId, proposedChanges[_modelId].length - 1,
+            _name,
+            _url, msg.sender
+        );
     }
 
-    function voteChange(uint256 _modelId, uint256 _changeId) public {
-        require(_exists(_modelId), "ERC721: operator query for nonexistent token");
-        require(_isApprovedOrOwner(msg.sender, _modelId), "Caller is not owner nor approved");
+    function voteChange(
+        uint256 _modelId,
+        uint256 _changeId
+    ) public {
+        require(
+            _exists(_modelId),
+            "ERC721: operator query for nonexistent token"
+        );
+        require(
+            _isApprovedOrOwner(msg.sender, _modelId),
+            "Caller is not owner nor approved"
+        );
 
         ProposedChange storage change = proposedChanges[_modelId][_changeId];
         require(!change.votes[msg.sender], "Caller has already voted");
@@ -123,8 +188,14 @@ contract CollaborativeBIM is ERC721, AccessControl {
         emit VoteCast(msg.sender, _modelId, _changeId);
     }
 
-    function approveChange(uint256 _modelId, uint256 _changeId) public onlyRole(DEFAULT_ADMIN_ROLE) {
-        require(_exists(_modelId), "ERC721: operator query for nonexistent token");
+    function approveChange(
+        uint256 _modelId,
+        uint256 _changeId
+    ) public onlyRole(DEFAULT_ADMIN_ROLE) {
+        require(
+            _exists(_modelId),
+            "ERC721: operator query for nonexistent token"
+        );
 
         ProposedChange storage change = proposedChanges[_modelId][_changeId];
         require(change.voteCount > totalSupply() / 2, "Not enough votes");
@@ -137,4 +208,5 @@ contract CollaborativeBIM is ERC721, AccessControl {
 
         emit ChangeApproved(_modelId, _changeId);
     }
+
 }
