@@ -7,7 +7,10 @@
   "keywords": [
     "blockfoundation",
     "blockchain",
-    "architecture"
+    "smart-contract",
+    "architecture",
+    "bim"
+
   ],
   "homepage": "https://github.com/block-foundation/solidity-bim-collaboration#readme",
   "repository": {
