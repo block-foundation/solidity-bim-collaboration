@@ -151,7 +151,8 @@ contract CollaborativeBIM is ERC721, AccessControl {
         address proposer
     );
 
-    /// @notice Event emitted when a proposed change for a BIM model is approved
+    /// @notice Event emitted when a proposed change for a BIM model is
+    /// approved
     /// @param modelId The ID of the model for which a change was approved
     /// @param changeId The ID of the change that was approved
     event ChangeApproved(
@@ -172,6 +173,7 @@ contract CollaborativeBIM is ERC721, AccessControl {
 
     // Methods
     // ========================================================================
+
     /// @notice This function allows for the creation of a new BIM (Building Information Modeling) model.
     /// @dev This function creates a new BIM model and mints an ERC721 token associated with it. 
     /// It increments the modelCounter each time a new model is created to ensure unique IDs for all models. 
@@ -204,7 +206,6 @@ contract CollaborativeBIM is ERC721, AccessControl {
 
         modelCounter++;
     }
-
 
     /// @notice This function marks a BIM (Building Information Modeling) model as complete.
     /// @dev This function sets the `isComplete` attribute of the BIMModel struct instance to `true`.
@@ -351,6 +352,5 @@ contract CollaborativeBIM is ERC721, AccessControl {
 
         emit ChangeApproved(_modelId, _changeId);
     }
-
 
 }
