@@ -1,12 +1,20 @@
 cff-version: 1.2.0
-title: solidity-bim-collaboration
+title: "CollaborativeBIM"
+abstract: "CollaborativeBIM represents an application of blockchain technology in the field of construction and design. It utilizes Ethereum blockchain and smart contracts to facilitate collaboration in Building Information Modeling (BIM). Each BIM model is represented as a unique non-fungible token (NFT), enabling individual ownership and traceability."
 version: 0.0.1
-date-released: 2023-07-01
+date-released: 2023-07-25
 url: "https://github.com/block-foundation/solidity-bim-collaboration"
+repository-code: "https://github.com/block-foundation/solidity-bim-collaboration"
 message: >-
   If you use this software, please cite it using
   the metadata from this file.
 type: software
+keywords:
+  - BIM
+  - blockchain
+  - Ethereum
+  - NFT
+  - smart contract
 authors:
   - given-names: Lars Bastiaan
     family-names: van Vianen
