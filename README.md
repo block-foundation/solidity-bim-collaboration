@@ -51,16 +51,13 @@
 
 ## Introduction
 
-Collaborative Building Information Modeling (BIM) on the Blockchain
-The CollaborativeBIM project represents a ground-breaking application of blockchain technology in the field of construction and design. This innovative solution leverages the power of Ethereum blockchain and smart contracts to facilitate collaboration in Building Information Modeling (BIM), a process that provides intelligent 3D models to architects, engineers, and construction professionals.
+The "Collaborative BIM" smart contract facilitates the collaboration in Building Information Modeling (BIM), a process that provides informed 3D models to architects, engineers, and construction professionals.
 
 The BIM process has been revolutionized by this decentralized approach, enhancing its inherent ability to express a building or infrastructure's functional and physical qualities. Each BIM model is represented as a unique non-fungible token (NFT), enabling individual ownership and traceability. This fosters greater accountability and responsibility in the collaboration process while still ensuring that everyone involved has a voice.
 
 The CollaborativeBIM project also incorporates a voting system for proposed changes to the BIM models. This democratic approach ensures that a majority of model owners have to agree on proposed changes before they can be implemented. This empowers each contributor and promotes an inclusive, consensus-based approach to model updates.
 
 Utilizing the Ethereum blockchain for this project offers additional advantages such as transparency, security, and the immutable nature of blockchain records. The contract also assumes the actual BIM model data is stored off-chain, reducing the complexity and potential cost of transactions.
-
-In summary, the CollaborativeBIM project is a testament to the power of blockchain in reshaping industries, facilitating collaboration, and promoting transparency and democracy in decision-making processes. It represents a future where design, architecture, and construction professionals worldwide can collaborate more efficiently, with confidence and consensus.
 
 ## Quick Start
 
